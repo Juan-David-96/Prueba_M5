@@ -7,3 +7,13 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+Tweet.destroy_all
+
+
+21.times do
+  Tweet.create(
+    description: Faker::Lorem.sentence(word_count: 10), 
+    user_name: Faker::Name.name
+  )
+end

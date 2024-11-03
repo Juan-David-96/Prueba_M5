@@ -1,22 +1,39 @@
-<p style="color: green"><%= notice %></p>
+<p class="text-success"><%= notice %></p>
 
 <% content_for :title, "Tweets" %>
-<%= form_with(url: tweets_path, method: :get, local: true) do %>
-  <%= text_field_tag :search, params[:search], placeholder: "Buscar Tweets" %>
-  <%= submit_tag "Buscar", class: "btn btn-secondary" %>
-<% end %>
-<h1>Tweets</h1>
-
-<div id="tweets">
-  <% @tweets.each do |tweet| %>
-    <%= render tweet %>
-    <p>
-      <%= link_to "Show this tweet", tweet %>
-    </p>
+<div class="mb-3">
+  <%= form_with(url: tweets_path, method: :get, local: true) do %>
+    <div class="input-group">
+      <%= text_field_tag :search, params[:search], placeholder: "Buscar Tweets", class: "form-control" %>
+      <div class="input-group-append">
+        <%= submit_tag "Buscar", class: "btn btn-secondary" %>
+      </div>
+    </div>
   <% end %>
 </div>
 
-<%= link_to 'Ver más', tweets_path(page: @tweets.next_page), class: 'btn btn-primary' if @tweets.next_page %>
+<h1 class="my-4">Tweets</h1>
 
+<div id="tweets" class="mb-4">
+  <% @tweets.each do |tweet| %>
+    <div class="tweet border rounded p-3 mb-3 shadow-sm">
+      <%= tweet.description %> - <%= tweet.user_name %>
+      <p>
+        <%= link_to "Mostrar este tweet", tweet, class: "btn btn-link" %>
+      </p>
+    </div>
+  <% end %>
+</div>
 
-<%= link_to "New tweet", new_tweet_path %>
+<div class="d-flex justify-content-between my-3">
+  <% if @tweets.prev_page %>
+    <%= link_to 'Página Anterior', tweets_path(page: @tweets.prev_page), class: 'btn btn-outline-secondary' %>
+  <% end %>
+
+  <% if @tweets.next_page %>
+    <%= link_to 'Página Siguiente', tweets_path(page: @tweets.next_page), class: 'btn btn-outline-primary' %>
+  <% end %>
+</div>
+
+<%= link_to "Nuevo Tweet", new_tweet_path, class: "btn btn-success" %>
+

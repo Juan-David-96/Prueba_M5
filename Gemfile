@@ -57,4 +57,8 @@ group :test do
 end
 
 gem "kaminari"
+gem "devise"
 gem "faker"
+gem "bootstrap"
+gem "jquery-rails"
+gem 'sassc-rails'
