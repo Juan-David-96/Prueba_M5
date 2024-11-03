@@ -1,7 +1,10 @@
 <p style="color: green"><%= notice %></p>
 
 <% content_for :title, "Tweets" %>
-
+<%= form_with(url: tweets_path, method: :get, local: true) do %>
+  <%= text_field_tag :search, params[:search], placeholder: "Buscar Tweets" %>
+  <%= submit_tag "Buscar", class: "btn btn-secondary" %>
+<% end %>
 <h1>Tweets</h1>
 
 <div id="tweets">
@@ -12,5 +15,8 @@
     </p>
   <% end %>
 </div>
+
+<%= link_to 'Ver más', tweets_path(page: @tweets.next_page), class: 'btn btn-primary' if @tweets.next_page %>
+
 
 <%= link_to "New tweet", new_tweet_path %>
