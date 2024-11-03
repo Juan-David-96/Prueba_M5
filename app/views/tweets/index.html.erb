@@ -25,15 +25,26 @@
   <% end %>
 </div>
 
-<div class="d-flex justify-content-between my-3">
-  <% if @tweets.prev_page %>
-    <%= link_to 'Página Anterior', tweets_path(page: @tweets.prev_page), class: 'btn btn-outline-secondary' %>
-  <% end %>
 
-  <% if @tweets.next_page %>
-    <%= link_to 'Página Siguiente', tweets_path(page: @tweets.next_page), class: 'btn btn-outline-primary' %>
+<div>
+  <% if @tweets.current_page == 1 %>
+    <% if @tweets.next_page %>
+      <%= link_to 'Página Siguiente', tweets_path(page: @tweets.next_page), class: 'btn btn-outline-primary' %>
+    <% end %>
+  <% elsif @tweets.current_page == @tweets.total_pages %>
+    <% if @tweets.prev_page %>
+      <%= link_to 'Página Anterior', tweets_path(page: @tweets.prev_page), class: 'btn btn-outline-secondary' %>
+    <% end %>
+  <% else %>
+    <% if @tweets.prev_page %>
+      <%= link_to 'Página Anterior', tweets_path(page: @tweets.prev_page), class: 'btn btn-outline-secondary' %>
+    <% end %>
+    <% if @tweets.next_page %>
+      <%= link_to 'Página Siguiente', tweets_path(page: @tweets.next_page), class: 'btn btn-outline-primary' %>
+    <% end %>
   <% end %>
 </div>
+
 
 <%= link_to "Nuevo Tweet", new_tweet_path, class: "btn btn-success" %>
 

@@ -11,7 +11,7 @@
 Tweet.destroy_all
 
 
-21.times do
+25.times do
   Tweet.create(
     description: Faker::Lorem.sentence(word_count: 10), 
     user_name: Faker::Name.name

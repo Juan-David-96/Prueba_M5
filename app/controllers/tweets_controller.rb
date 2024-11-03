@@ -9,7 +9,7 @@ class TweetsController < ApplicationController
                 Tweet.page(params[:page]).per(10)
               end
   end
-  
+
 
   # GET /tweets/1 or /tweets/1.json
   def show
